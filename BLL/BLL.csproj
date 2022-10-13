@@ -10,7 +10,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Mappers\" />
     <Folder Include="Services\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
