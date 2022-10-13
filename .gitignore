@@ -364,4 +364,5 @@ FodyWeavers.xsd
 
 
 #ignore config API
-CrowdfundingApi/appsettings.json
+appsettings.json
+
