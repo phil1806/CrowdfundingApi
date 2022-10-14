@@ -4,9 +4,10 @@
 	NickName VARCHAR(50) NOT NULL,
 	Email VARCHAR(50) NOT NULL,
 	Pwd VARCHAR(100) NOT NULL,
-	Birthdate DATE NOT NULL,
+	Birthdate date  NOT NULL,
 	Salt VARCHAR(100) NOT NULL,
-	IsActive TINYINT,
+	IsActive TINYINT NOT NULL  DEFAULT 1,
 	[IdRole] INT NOT NULL REFERENCES [Roles](Id),
+    CONSTRAINT CHK_Birthdate CHECK ((YEAR(getDate()) -Year(Birthdate) ) >= 18)
 	
 )

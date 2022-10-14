@@ -16,3 +16,24 @@ INSERT INTO StatusProjects (TypeStatus)
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 
 
+
+--CREATE PROCEDURE [dbo].[GetContributionByUsers]
+--@Id INT
+--AS
+--BEGIN
+--	select C.id, C.Montant,C.DateContribution
+--from Contributions as C
+--inner join Users as U
+--on C.id = U.id
+--where U.id = @Id;
+--END
+
+-- Tache
+-- Mettre les elments en unique dans la table  => users (name et email)
+-- Faire la procedure dans le trello ( ne pas oublier d'ajouter  le type de users )
+
+
+
+
+
+
