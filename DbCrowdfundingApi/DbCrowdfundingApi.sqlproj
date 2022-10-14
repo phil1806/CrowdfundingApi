@@ -65,4 +65,15 @@
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Users.sql" />
+    <Build Include="Tables\Roles.sql" />
+    <Build Include="Tables\Contributions.sql" />
+    <Build Include="Tables\Paliers.sql" />
+    <Build Include="Tables\Projects.sql" />
+    <Build Include="Tables\StatusProjects.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DbCrowdfundingApi.publish.xml" />
+  </ItemGroup>
 </Project>

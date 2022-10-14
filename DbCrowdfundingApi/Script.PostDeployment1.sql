@@ -9,3 +9,10 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+INSERT INTO Roles (TypeRole) 
+VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
+
+INSERT INTO StatusProjects (TypeStatus) 
+VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
+
+
