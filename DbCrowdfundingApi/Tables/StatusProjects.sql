@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[StatusProjects]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	TypeStatus VARCHAR(100) NOT NULL
+)
