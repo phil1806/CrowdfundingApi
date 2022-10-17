@@ -3,13 +3,20 @@
 	@pwd VARCHAR(100)
 AS
 	BEGIN
+
+		--SELECT Id, Email, NickName FROM [Users] WHERE  Email LIKE @email
+		
 		DECLARE @salt VARCHAR(100)
-		SELECT @salt = Salt FROM Users WHERE Email = @email
+		SET @salt = (SELECT Salt FROM [Users] WHERE Email LIKE @email)
 		
 		DECLARE @hash VARBINARY(64)
-		SET @hash = HASHBYTES('SHA_512', CONCAT(@salt, @pwd, @salt))
+	--SELECT @hash HASHBYTES('SHA2_512', CONCAT(@salt, @pwd, @salt));
+	--SET @hash = HASHBYTES('SHA2_512', CONCAT(@salt, @pdw, @salt));
+
+		SELECT Id, Email = @salt, NickName = @hash FROM [Users] WHERE  Email LIKE @email
 		
+		/*
 		SELECT Id, Email, NickName, IsActive
 		FROM Users 
-		WHERE  Email = @email AND Pwd = @hash
+		WHERE  Email LIKE @email AND Pwd LIKE @hash*/
 END

@@ -109,11 +109,32 @@ namespace DAL.Repositories {
         }
 
         public User Login(UserLogin user) {
-            
-            Command cmd = new Command("Login", true);
+
+
+            /*Command cmd = new Command("Login", true);
             cmd.AddParameter("@email", user.Email);
             cmd.AddParameter("@pwd", user.Password);
-            return AdoLibCon.ExecuteReaderOnce(cmd,Converter);
+            return AdoLibCon.ExecuteReaderOnce(cmd,Converter);*/
+
+            using (SqlConnection cnx = new SqlConnection(_connectionString)) {
+                using (SqlCommand cmd = cnx.CreateCommand()) {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Login";
+                    cmd.Parameters.AddWithValue("@pwd", user.Password);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+
+                    cnx.Open();
+                    SqlDataReader r = cmd.ExecuteReader();
+                    r.Read();
+                    return new User() {
+                        Id = (int?)r?["Id"] ?? 404,
+                        Nickname = r?["NickName"]?.ToString() ?? "",
+                        Email = r?["Email"]?.ToString() ?? ""
+                    };
+
+                }
+            }
 
         }
     }
