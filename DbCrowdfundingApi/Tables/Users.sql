@@ -7,9 +7,6 @@
 	Birthdate DATE NOT NULL,
 	Salt VARCHAR(150) NOT NULL,
 	IsActive TINYINT DEFAULT 1 NOT NULL,
-	Birthdate date  NOT NULL,
-	Salt VARCHAR(150) NOT NULL,
-	IsActive TINYINT NOT NULL  DEFAULT 1,
 	[IdRole] INT NOT NULL REFERENCES [Roles](Id),
 	
 )
