@@ -72,7 +72,7 @@
     <Build Include="Tables\Paliers.sql" />
     <Build Include="Tables\Projects.sql" />
     <Build Include="Tables\StatusProjects.sql" />
-    <Build Include="StoredProcedure\Procedure1.sql" />
+    <Build Include="StoredProcedure\GetUsersContributionById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DbCrowdfundingApi.publish.xml" />
