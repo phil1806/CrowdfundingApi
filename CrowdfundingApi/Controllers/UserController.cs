@@ -16,8 +16,11 @@ namespace CrowdfundingApi.Controllers {
 
         [HttpPost]
         public IActionResult Register(UserForm user) {
-            _UserService.Create(user);
-            return Ok(user);
+            try {
+                return Ok(_UserService.Create(user));
+            } catch (Exception ex) { 
+                return BadRequest(ex.Message);
+            }
         }
 
 

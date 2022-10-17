@@ -4,6 +4,6 @@ using BLL.Models;
 
 namespace BLL.Interfaces {
     public interface IUserService {
-        public void Create(UserForm user);
+        public User Create(UserForm user);
     }
 }

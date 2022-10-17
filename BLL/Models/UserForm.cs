@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Model to register new User
+ * 
+ */ 
 
 namespace BLL.Models {
     public class UserForm {

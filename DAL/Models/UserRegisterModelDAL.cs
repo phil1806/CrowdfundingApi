@@ -1,4 +1,7 @@
-﻿
+﻿/*
+ * Model to register new User
+ * 
+ */
 
 
 namespace DAL.Models {

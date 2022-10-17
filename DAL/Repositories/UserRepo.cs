@@ -13,21 +13,25 @@ namespace DAL.Repositories {
             _connectionString = c.GetConnectionString("default");
         }
 
-        public void Register(UserRegister user) {
+        public User Register(UserRegister user) {
             using (SqlConnection cnx = new SqlConnection(_connectionString)) {
                 using (SqlCommand cmd = cnx.CreateCommand()) {
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "RegisterUser";
+                    cmd.Parameters.AddWithValue("@pdw", user.Password);
+                    cmd.Parameters.AddWithValue("@birthdate", user.BirtDay);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    cmd.Parameters.AddWithValue("@nickname", user.Nickname);
+                    cmd.Parameters.AddWithValue("@role", user.Role);
+
                     cnx.Open();
-                    cmd.ExecuteScalar();
-                    //throw new NotImplementedException(user.ToString());
-                    //TODO use procedure registerUser
-                    /*cmd.CommandText = @$"  ";
-                    cmd.Parameters.AddWithValue("p1", m.Title);
-                    cmd.Parameters.AddWithValue("p2", m.Synopsis);
-                    cmd.Parameters.AddWithValue("p3", m.ReleaseYear);
-                    cmd.Parameters.AddWithValue("p4", m.PEGI);*/
+                    SqlDataReader r = cmd.ExecuteReader();
+                    r.Read();
+                    return new User() {
+                        Id = (int)r["ID"],
+                        Nickname = r["NickName"]?.ToString() ?? ""
+                    };
 
                 }
             }

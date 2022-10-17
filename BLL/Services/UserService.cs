@@ -11,9 +11,9 @@ namespace BLL.Services {
         public UserService(IUserRepo userRepo) {
             _UserRepo = userRepo;
         }
-        public void Create(UserForm user) {
+        public User Create(UserForm user) {
             //TODO check > 18 ans
-            _UserRepo.Register(user.ToDAL());
+            return _UserRepo.Register(user.ToDAL()).ToBll();
         }
     }
 }
