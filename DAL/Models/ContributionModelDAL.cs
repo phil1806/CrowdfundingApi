@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Models
+namespace DAL.Models
 {
-    public class ContributionForm
+    public class ContributionModelDAL
     {
         public int Id { get; set; }
         public decimal Montant { get; set; }
         public int UserId { get; set; }
 
         public string ProjectId { get; set; }
-        
     }
 }

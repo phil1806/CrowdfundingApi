@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    internal interface IContributionRepo
+    public interface IContributionRepo
     {
-        public Contribution Add(ContributionAdd newContribution);
+        public Contribution Add(ContributionModelDAL contribution);
+        public Contribution GetById(int id);
+        public IEnumerable<Contribution> GetAll();
 
     }
 }

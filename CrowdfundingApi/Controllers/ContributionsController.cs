@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL.Interfaces;
+using BLL.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CrowdfundingApi.Controllers
 {
@@ -6,27 +8,31 @@ namespace CrowdfundingApi.Controllers
     [Route("api/[controller]")]
    
     public class ContributionsController : Controller
-    {   
-        private readonly IContributionsService _contributionService
-        public 
+    {
+        private readonly IContributionService _contributionService;
+        public ContributionsController(IContributionService contributionService)
+        {
+            _contributionService = contributionService;
+        }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             try
             {
-                return Ok();
+                return Ok(_contributionService.GetAll());
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet]
-        public IActionResult GetById()
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok();
+                return Ok(_contributionService.GetById(id));
             }
             catch (Exception ex)
             {
@@ -34,11 +40,11 @@ namespace CrowdfundingApi.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(ContributionForm contribution)
         {
             try
             {
-                return Ok();
+                return Ok(_contributionService.Add(contribution));
             }
             catch (Exception ex)
             {

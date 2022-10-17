@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    internal class Contribution
+    public class Contribution
     {
         public int Id { get; set; }
-        public string Titre { get; set; }
-        public string Description { get; set; }
+        public decimal Montant { get; set; }
+        public int UserId { get; set; }
+
+        public string ProjectId { get; set; }
 
     }
 }

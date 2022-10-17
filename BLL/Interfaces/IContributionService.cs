@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    internal interface IContributionService
+    public interface IContributionService
     {
-        public Contribution Add(ContributionForm newContribution);
-
+        public Contribution Add(ContributionForm contribution);
+        public Contribution GetById(int id);
+        public IEnumerable<Contribution> GetAll();
     }
 }
