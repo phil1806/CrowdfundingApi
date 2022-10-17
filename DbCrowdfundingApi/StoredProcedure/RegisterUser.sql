@@ -1,15 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[RegisterUser]
-    @nickname VARCHAR(50),
-    @email VARCHAR(150),
-    @pdw VARCHAR(50),
-    @birthdate DATE,
-    @role INT
+	@nickname VARCHAR(50),
+	@email VARCHAR(150),
+	@pdw VARCHAR(50),
+	@birthdate DATE,
+	@role INT
 AS
 BEGIN 
-    DECLARE @salt VARCHAR(150)
+	DECLARE @salt VARCHAR(150)
     SET @salt = CONCAT(NEWID(), NEWID(), NEWID(), NEWID());
 
-    DECLARE @hash VARBINARY(64)
+	DECLARE @hash VARBINARY(64)
     SET @hash = HASHBYTES('SHA2_512', CONCAT(@salt, @pdw, @salt));
 
     DECLARE @outputTable TABLE ( Id INT , nickname VARCHAR(50) )
