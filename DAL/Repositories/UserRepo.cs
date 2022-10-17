@@ -29,7 +29,7 @@ namespace DAL.Repositories {
                     SqlDataReader r = cmd.ExecuteReader();
                     r.Read();
                     return new User() {
-                        Id = (int)r["ID"],
+                        Id = (int)r["Id"],
                         Nickname = r["NickName"]?.ToString() ?? ""
                     };
 

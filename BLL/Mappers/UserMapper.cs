@@ -28,7 +28,8 @@ namespace BLL.Mappers {
 
         public static BLLm.User ToBll(this DALm.User user) {
             return new BLLm.User() {
-                Nickname = user.Nickname
+                Nickname = user.Nickname,
+                Id = user.Id
             };
         }
 

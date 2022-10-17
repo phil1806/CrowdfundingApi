@@ -6,8 +6,7 @@ namespace DAL.Models {
         public int Id { get; set; } 
         public string Nickname { get; set; }
         
-        //TODO
-        //public string Token { get; set; }
+        public string Token { get; set; }
 
     }
 }
