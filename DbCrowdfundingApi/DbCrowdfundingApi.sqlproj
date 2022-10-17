@@ -75,7 +75,7 @@
     <Build Include="Triggers\UserSoftDelete.sql" />
     <Build Include="StoredProcedure\Login.sql" />
     <Build Include="StoredProcedure\RegisterUser.sql" />
-    <Build Include="StoredProcedure\Procedure1.sql" />
+    <Build Include="StoredProcedure\GetUsersContributionById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DbCrowdfundingApi.publish.xml" />
