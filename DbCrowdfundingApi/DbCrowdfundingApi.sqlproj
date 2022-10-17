@@ -72,6 +72,9 @@
     <Build Include="Tables\Paliers.sql" />
     <Build Include="Tables\Projects.sql" />
     <Build Include="Tables\StatusProjects.sql" />
+    <Build Include="Triggers\UserSoftDelete.sql" />
+    <Build Include="StoredProcedure\Login.sql" />
+    <Build Include="StoredProcedure\RegisterUser.sql" />
     <Build Include="StoredProcedure\GetUsersContributionById.sql" />
   </ItemGroup>
   <ItemGroup>
