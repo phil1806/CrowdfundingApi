@@ -1,7 +1,7 @@
 ﻿/*
 Modèle de script de post-déploiement							
 --------------------------------------------------------------------------------------
- Ce fichier contient des instructions SQL qui seront ajoutées au script de compilation.		
+ Ce fichier contient des instructions SQL qui seront ajoutées au script de compilation.		s
  Utilisez la syntaxe SQLCMD pour inclure un fichier dans le script de post-déploiement.			
  Exemple :      :r .\monfichier.sql								
  Utilisez la syntaxe SQLCMD pour référencer une variable dans le script de post-déploiement.		
@@ -9,10 +9,19 @@ Modèle de script de post-déploiement
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
+
 INSERT INTO Roles (TypeRole) 
 VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
 
 INSERT INTO StatusProjects (TypeStatus) 
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
+
+
+
+
+
+
+
 
 
