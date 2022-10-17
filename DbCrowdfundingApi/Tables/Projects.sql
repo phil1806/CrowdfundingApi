@@ -7,7 +7,7 @@
 	CompteBQ  VARCHAR(100) ,
 	DateDebut DATETIME NOT NULL,
 	DateFin DATETIME NOT NULL,
-	[IdUsers] INT NOT NULL REFERENCES [Users](Id),
+	[IdUserOwner] INT NOT NULL REFERENCES [Users](Id),
 	[IdStatus] INT NOT NULL REFERENCES [StatusProjects](Id)
 
 
