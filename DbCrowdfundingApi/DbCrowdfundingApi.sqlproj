@@ -78,6 +78,7 @@
     <Build Include="StoredProcedure\GetUsersContributionById.sql" />
     <Build Include="StoredProcedure\GetProjectsByFlag.sql" />
     <Build Include="StoredProcedure\ValidProject.sql" />
+    <Build Include="StoredProcedure\GetProjectById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DbCrowdfundingApi.publish.xml" />
