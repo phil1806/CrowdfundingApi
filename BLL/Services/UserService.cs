@@ -17,7 +17,7 @@ namespace BLL.Services {
         }
 
         public void Delete(int id) {
-            throw new NotImplementedException();
+            _UserRepo.Delete(id);
         }
 
         public IEnumerable<User> GetAllUsers() {

@@ -2,7 +2,6 @@
 using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -58,7 +57,9 @@ namespace DAL.Repositories {
         }
 
         public void Delete(int id) {
-            throw new NotImplementedException();
+            Command cmd = new Command("DELETE FROM [Users] WHERE Id = @p0");//DELETE FROM `table`  WHERE condition
+            cmd.AddParameter("@p0", id);
+            AdoLibCon.ExecuteScalar(cmd);
         }
 
         public IEnumerable<User> GetAllUsers() {
@@ -111,11 +112,12 @@ namespace DAL.Repositories {
         public User Login(UserLogin user) {
 
 
-            /*Command cmd = new Command("Login", true);
+            Command cmd = new Command("Login", true);
             cmd.AddParameter("@email", user.Email);
             cmd.AddParameter("@pwd", user.Password);
-            return AdoLibCon.ExecuteReaderOnce(cmd,Converter);*/
+            return AdoLibCon.ExecuteReaderOnce(cmd,Converter);
 
+            /*
             using (SqlConnection cnx = new SqlConnection(_connectionString)) {
                 using (SqlCommand cmd = cnx.CreateCommand()) {
 
@@ -134,7 +136,7 @@ namespace DAL.Repositories {
                     };
 
                 }
-            }
+            }*/
 
         }
     }
