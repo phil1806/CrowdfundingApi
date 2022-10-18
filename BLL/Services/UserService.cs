@@ -32,8 +32,8 @@ namespace BLL.Services {
             return _UserRepo.Login(user.ToDal()).ToBll();
         }
 
-        public User Update(User user) {
-            throw new NotImplementedException();
+        public void Update(User user) {
+            _UserRepo.Update(user.ToBll());
         }
     }
 }

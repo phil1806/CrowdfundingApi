@@ -23,7 +23,6 @@ namespace CrowdfundingApi.Controllers {
             }
         }
 
-        
         [HttpPost("Login")]
         public IActionResult Login(UserLogin user) {
             try {
@@ -36,7 +35,8 @@ namespace CrowdfundingApi.Controllers {
         [HttpPut]
         public IActionResult Update(User user) {
             try {
-                return Ok(_UserService.Update(user));
+                _UserService.Update(user);
+                return Ok();
             } catch (Exception ex) {
                 return BadRequest(ex.Message);
             }
@@ -51,10 +51,9 @@ namespace CrowdfundingApi.Controllers {
         [HttpGet( "{id}" ) ]
         public IActionResult GetUserById(int id) {
             try {
-
                 return Ok(_UserService.GetUserById(id)) ;
             }catch(Exception ex) {
-                return NotFound(ex);
+                return BadRequest(ex.Message);
             }
         }
 

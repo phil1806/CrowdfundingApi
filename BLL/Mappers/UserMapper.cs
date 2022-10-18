@@ -29,7 +29,6 @@ namespace BLL.Mappers {
         public static DALm.UserLogin ToDal(this BLLm.UserLogin user) {
             return new DALm.UserLogin() {
                 Email = user.Email,
-                Nickname = user.Nickname,
                 Password = user.Password
             };
         }
@@ -38,10 +37,20 @@ namespace BLL.Mappers {
             return new BLLm.User() {
                 Nickname = user.Nickname,
                 Id = user.Id,
-                Email = user.Email
+                Email = user.Email,
+                BirtDay= user.BirtDay
             };
         }
-         
+
+        public static DALm.User ToBll(this BLLm.User user) {
+            return new DALm.User() {
+                Nickname = user.Nickname,
+                Id = user.Id,
+                Email = user.Email,
+                BirtDay = user.BirtDay
+            };
+        }
+
         public static IEnumerable<BLLm.User> ToBll(this IEnumerable<DALm.User> users) {
             foreach(DALm.User u in users) {
                 yield return u.ToBll();
