@@ -15,13 +15,17 @@ VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
 INSERT INTO StatusProjects (TypeStatus) 
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 
+INSERT INTO Users VALUES('Phil','Phil@gmail.com','1234$','2000-01-01','jfjfjjfjfjff',1,1);
+INSERT INTO Projects VALUES('monProjet','maDescription','mon objectif','12547','2022-10-01','2022-10-10',1,1);
+INSERT INTO Contributions VALUES(56.2,getdate(),1,1);
+
 
 
 --CREATE PROCEDURE [dbo].[GetContributionByUsers]
 --@Id INT
 --AS
 --BEGIN
---	select C.id, C.Montant,C.DateContribution
+--select C.id, C.Montant,C.DateContribution
 --from Contributions as C
 --inner join Users as U
 --on C.id = U.id
@@ -34,6 +38,5 @@ VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 
 
 
-
-
+ 
 
