@@ -26,8 +26,8 @@ namespace DAL.Repositories {
                 Id = (int) dr["Id"],
                 Nickname = dr["Nickname"]?.ToString() ?? "",
                 Email = dr["Email"]?.ToString() ?? "",
-                BirtDay = dr["Birthdate"] == null ? new DateTime() : DateTime.Parse(dr["Birthdate"].ToString())// (DateTime) dr["Birthdate"]
-
+                BirtDay = dr["Birthdate"] == null ? new DateTime() : DateTime.Parse(dr["Birthdate"].ToString()),// (DateTime) dr["Birthdate"]
+                Role = (int) dr["IdRole"]
             };
         }
 

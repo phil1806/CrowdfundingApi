@@ -12,7 +12,8 @@ namespace BLL.Mappers {
                 Role = user.Role,
                 BirtDay = user.BirtDay,
                 Nickname = user.Nickname,
-                Password = user.Password
+                Password = user.Password,
+                
             };
         }
 
@@ -38,8 +39,9 @@ namespace BLL.Mappers {
                 Nickname = user.Nickname,
                 Id = user.Id,
                 Email = user.Email,
-                BirtDay= user.BirtDay
-            };
+                BirtDay= user.BirtDay,
+                Role = user.Role
+        };
         }
 
         public static DALm.User ToBll(this BLLm.User user) {
@@ -47,10 +49,13 @@ namespace BLL.Mappers {
                 Nickname = user.Nickname,
                 Id = user.Id,
                 Email = user.Email,
-                BirtDay = user.BirtDay
+                BirtDay = user.BirtDay,
+                Role = user.Role
             };
         }
 
+
+        //TODO useless fct
         public static IEnumerable<BLLm.User> ToBll(this IEnumerable<DALm.User> users) {
             foreach(DALm.User u in users) {
                 yield return u.ToBll();

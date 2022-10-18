@@ -7,6 +7,7 @@ namespace DAL.Models {
         public string Nickname { get; set; }
         public string Email { get; set; }
         public DateTime BirtDay { get; set; }
+        public int Role { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ AS
 		SET @hash = HASHBYTES('SHA2_512', CONCAT(@salt, @pwd, @salt));
 		
 		
-		SELECT Id, Email, NickName, IsActive, Birthdate
+		SELECT Id, Email, NickName, IsActive, Birthdate, IdRole
 		FROM Users 
 		WHERE  Email LIKE @email AND Pwd LIKE @hash
 END

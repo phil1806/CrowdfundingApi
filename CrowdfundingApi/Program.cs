@@ -1,6 +1,7 @@
 
 using BLL.Interfaces;
 using BLL.Services;
+using CrowdfundingApi.Infrastructure;
 using DAL.Interfaces;
 using DAL.Repositories;
 
@@ -16,6 +17,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+
+builder.Services.AddScoped<TokenManager>();
 
 var app = builder.Build();
 

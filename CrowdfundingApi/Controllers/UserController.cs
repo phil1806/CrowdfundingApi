@@ -1,7 +1,9 @@
 ﻿
 using BLL.Interfaces;
 using BLL.Models;
+using CrowdfundingApi.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using UserAPI = CrowdfundingApi.Models.UserAPI;
 
 namespace CrowdfundingApi.Controllers {
     [Route("api/[controller]")]
@@ -9,9 +11,11 @@ namespace CrowdfundingApi.Controllers {
     public class UserController : Controller {
 
         private readonly IUserService _UserService;
+        private readonly TokenManager _tokenManager;
 
-        public UserController(IUserService userService) {
+        public UserController(IUserService userService, TokenManager tokenManager) {
             _UserService = userService;
+            _tokenManager = tokenManager;
         }
 
         [HttpPost("Register")]
@@ -26,7 +30,13 @@ namespace CrowdfundingApi.Controllers {
         [HttpPost("Login")]
         public IActionResult Login(UserLogin user) {
             try {
-                return Ok(_UserService.Login(user));
+                User u = _UserService.Login(user);
+                UserAPI cu = new UserAPI {
+                    Id = u.Id,
+                    Nickname = u.Nickname,
+                    Token = _tokenManager.GenerateToken(u)
+                };
+                return Ok(cu);
             } catch (Exception ex) {
                 return BadRequest(ex.Message);
             }
