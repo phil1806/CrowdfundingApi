@@ -21,8 +21,8 @@ namespace DAL.Repositories
             {
                 Id = (int)reader["Id"],
                 Montant = (decimal)reader["Montant"],
-                UserId = (int)reader["UserId"],
-                ProjectId = (int)reader["ProjectId"]
+                IdUser = (int)reader["IdUser"],
+                IdProject = (int)reader["IdProject"]
 
             };
         }
@@ -32,11 +32,11 @@ namespace DAL.Repositories
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "AddContribution";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "INSERT INTO Contributions (Montant, IdUser, IdProject) VALUES (@Montant, @IdUser, @IdProject)";
                     cmd.Parameters.AddWithValue("@Montant", contribution.Montant);
-                    cmd.Parameters.AddWithValue("@UserId", contribution.UserId);
-                    cmd.Parameters.AddWithValue("@ProjectId", contribution.ProjectId);
+                    cmd.Parameters.AddWithValue("@IdUser", contribution.IdUser);
+                    cmd.Parameters.AddWithValue("@IdProject", contribution.IdProject);
                     cnx.Open();
                     cmd.ExecuteNonQuery();
                    
@@ -50,7 +50,7 @@ namespace DAL.Repositories
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Contributitons";
+                    cmd.CommandText = "SELECT * FROM Contributions";
                     cnx.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())

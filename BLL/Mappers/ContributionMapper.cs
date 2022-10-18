@@ -8,9 +8,10 @@ namespace BLL.Mappers
         {
             return new BLLm.ContributionModelBLL()
             {
+                Id = contribution.Id,
                 Montant = contribution.Montant,
-                UserId = contribution.UserId,
-                ProjectId = contribution.ProjectId
+                IdUser = contribution.IdUser,
+                IdProject = contribution.IdProject
             };
         }
 
@@ -18,9 +19,10 @@ namespace BLL.Mappers
         {
             return new DALm.ContributionModelDAL()
             {
+                Id = contribution.Id,
                 Montant = contribution.Montant,
-                UserId = contribution.UserId,
-                ProjectId = contribution.ProjectId
+                IdUser = contribution.IdUser,
+                IdProject = contribution.IdProject
             };        
         }
 

@@ -10,9 +10,9 @@ namespace BLL.Models
     {
         public int Id { get; set; }
         public decimal Montant { get; set; }
-        public int UserId { get; set; }
+        public int IdUser { get; set; }
 
-        public int ProjectId { get; set; }
+        public int IdProject { get; set; }
 
     }
 }

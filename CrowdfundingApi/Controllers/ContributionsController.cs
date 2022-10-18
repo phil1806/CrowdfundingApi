@@ -46,8 +46,8 @@ namespace CrowdfundingApi.Controllers
             _contributionService.Add(new ContributionModelBLL
             {
                 Montant = contribution.Montant,
-                UserId = contribution.UserId,
-                ProjectId = contribution.ProjectId
+                IdUser = contribution.IdUser,
+                IdProject = contribution.IdProject
             });
             return Ok();
             
