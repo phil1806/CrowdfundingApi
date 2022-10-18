@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    public class ContributionForm
+    public class ContributionModelBLL
     {
         public int Id { get; set; }
         public decimal Montant { get; set; }
         public int UserId { get; set; }
 
-        public string ProjectId { get; set; }
-        
+        public int ProjectId { get; set; }
+
     }
 }

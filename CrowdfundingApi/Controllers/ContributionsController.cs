@@ -40,16 +40,18 @@ namespace CrowdfundingApi.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Add(ContributionForm contribution)
+        public IActionResult Add(ContributionModelBLL contribution)
         {
-            try
+            if (!ModelState.IsValid) return BadRequest();
+            _contributionService.Add(new ContributionModelBLL
             {
-                return Ok(_contributionService.Add(contribution));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                Montant = contribution.Montant,
+                UserId = contribution.UserId,
+                ProjectId = contribution.ProjectId
+            });
+            return Ok();
+            
+           
         }
     }
 }

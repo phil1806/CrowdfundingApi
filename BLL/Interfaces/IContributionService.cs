@@ -9,8 +9,8 @@ namespace BLL.Interfaces
 {
     public interface IContributionService
     {
-        public Contribution Add(ContributionForm contribution);
-        public Contribution GetById(int id);
-        public IEnumerable<Contribution> GetAll();
+         void Add(ContributionModelBLL contribution);
+         ContributionModelBLL GetById(int id);
+         IEnumerable<ContributionModelBLL> GetAll();
     }
 }

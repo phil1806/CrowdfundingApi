@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace DAL.Repositories
 {
-    internal class ContributionRepo : IContributionRepo
+    public class ContributionRepo : IContributionRepo
     {
         private string _connectionString;
 
@@ -14,7 +14,19 @@ namespace DAL.Repositories
         {
             _connectionString = c.GetConnectionString("default");
         }
-        public Contribution Add(ContributionModelDAL contribution)
+
+        protected ContributionModelDAL Converter(IDataReader reader)
+        {
+            return new ContributionModelDAL
+            {
+                Id = (int)reader["Id"],
+                Montant = (decimal)reader["Montant"],
+                UserId = (int)reader["UserId"],
+                ProjectId = (int)reader["ProjectId"]
+
+            };
+        }
+        public void Add(ContributionModelDAL contribution)
         {
             using (SqlConnection cnx =  new SqlConnection(_connectionString))
             {
@@ -25,19 +37,53 @@ namespace DAL.Repositories
                     cmd.Parameters.AddWithValue("@Montant", contribution.Montant);
                     cmd.Parameters.AddWithValue("@UserId", contribution.UserId);
                     cmd.Parameters.AddWithValue("@ProjectId", contribution.ProjectId);
+                    cnx.Open();
+                    cmd.ExecuteNonQuery();
                    
                 }
             }
         }
 
-        public IEnumerable<Contribution> GetAll()
+        public IEnumerable<ContributionModelDAL> GetAll()
         {
-            
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Contributitons";
+                    cnx.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            yield return Converter(reader);
+                        }
+                    }
+                }
+            }
         }
 
-        public Contribution GetById(int id)
+        public ContributionModelDAL GetById(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Contributions WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("Id", id);
+                    cnx.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return Converter(reader);
+                        }
+                        throw new Exception();
+                    }
+                }
+            }
         }
     }
 }

@@ -1,15 +1,12 @@
 ﻿using BLL.Interfaces;
 using BLL.Models;
 using DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BLL.Mappers;
+
 
 namespace BLL.Services
 {
-    internal class ContributionService : IContributionService
+    public class ContributionService : IContributionService
     {
         private readonly IContributionRepo _contributionService;
 
@@ -18,17 +15,17 @@ namespace BLL.Services
             _contributionService = contributionRepo;
         }
 
-        public Contribution Add(ContributionForm contribution)
+        public void Add(ContributionModelBLL contribution)
         {
-            return _contributionService.Add(contribution.ToDal());
+            _contributionService.Add(contribution.ToDal());
         }
 
-        public IEnumerable<Contribution> GetAll()
+        public IEnumerable<ContributionModelBLL> GetAll()
         {
             return _contributionService.GetAll().Select(element => element.ToBll());
         }
 
-        public Contribution GetById(int id)
+        public ContributionModelBLL GetById(int id)
         {
             return _contributionService.GetById(id).ToBll();
         }

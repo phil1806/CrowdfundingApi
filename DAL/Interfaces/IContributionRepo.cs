@@ -9,9 +9,9 @@ namespace DAL.Interfaces
 {
     public interface IContributionRepo
     {
-        public Contribution Add(ContributionModelDAL contribution);
-        public Contribution GetById(int id);
-        public IEnumerable<Contribution> GetAll();
+        void Add(ContributionModelDAL contribution);
+        ContributionModelDAL GetById(int id);
+        IEnumerable<ContributionModelDAL> GetAll();
 
     }
 }
