@@ -18,7 +18,7 @@ BEGIN
 		select C.id, C.Montant,C.DateContribution
 		from Contributions as C
 		inner join Users as U
-		on C.IdUser = U.Id
+		on C.IdUserContributeur = U.Id
 		where U.id = @Id;
 	ELSE
 	 SELECT 'je ne suis pas Contributeur...';
