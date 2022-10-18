@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BLL.Models
 {
     public class Project
-    {
+   {
         public int Id { get; set; }
         public string Titre { get; set; }
         public string Description { get; set; }
@@ -15,11 +15,9 @@ namespace DAL.Models
         public string CompteBQ { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
-        public string TypeStatus { get; set; } 
-        public decimal ContributionTotal { get; set; } 
+        public string TypeStatus { get; set; } = "non existant";
+        public decimal ContributionTotal { get; set; }
+
+
     }
-
-
-    
-    
 }

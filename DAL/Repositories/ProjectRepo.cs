@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ProjectRepo : IProject
+    public class ProjectRepo : IProjectRepo
     {
         //Prop
         private readonly string _connectionString;
@@ -32,12 +32,28 @@ namespace DAL.Repositories
                 Id = (int)reader["Id"],
                 Titre = (string)reader["Titre"],
                 Description = (string)reader["Description"],
-                Objectif = (string)reader["Objectif"],
-                CompteBQ =(string)reader["CompteBQ"],
-                DateDebut = (DateTime)reader["DateDubut"],
-                DateFin = (DateTime)reader["DateFin"],
-                IdUserOwner = (int)reader["IdUserOwner"],
-                IdStatus = (int)reader["IdStatus"]
+                Objectif = (decimal)(reader["Objectif"]),
+                CompteBQ = (string?)reader["CompteBQ"] ?? "",
+                DateDebut = DateTime.Parse(reader["DateDebut"].ToString()),
+                DateFin = DateTime.Parse(reader["DateFin"].ToString()),
+                TypeStatus = (string)reader["TypeStatus"],
+            
+            };
+        }
+
+        private Project Converter1(IDataReader reader)
+        {
+            return new Project
+            {
+                Id = (int)reader["Id"],
+                Titre = (string)reader["Titre"],
+                Description = (string)reader["Description"],
+                Objectif = (decimal)(reader["Objectif"]),
+                CompteBQ = (string?)reader["CompteBQ"] ?? "",
+                DateDebut = DateTime.Parse(reader["DateDebut"].ToString()),
+                DateFin = DateTime.Parse(reader["DateFin"].ToString()),
+                ContributionTotal = (decimal?)reader["ContributionTotal"] ?? 0,
+                TypeStatus ="non existant"
             };
         }
         public bool CreateProject()
@@ -56,7 +72,7 @@ namespace DAL.Repositories
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandText = "GetProjectsByFalg";
+                    cmd.CommandText = "GetProjectsByFlag";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     /*
@@ -78,14 +94,61 @@ namespace DAL.Repositories
             }
         }
 
-        public Project GetProjectById(int id)
+        public Project  GetProjectById(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "GetProjetById";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("IdProject", id);
+                    cnx.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return Converter1(reader);
+                        }
+                        throw new Exception("Project inexistant...");
+                    }
+                }
+            }
+
         }
+
+
+        /// <summary>
+        /// elle revoit unique les projets validés ou ne cours
+        /// </summary>
+        /// <returns>IEnumerable de projet</returns>
 
         public IEnumerable<Project> GetValidProjects()
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "GetProjectsByFlag";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    /*
+                        -- Attention en fonction du paramètre on definit le type de Projets de l'on recupère
+                              -- Paramètre  0 pour => tous les projets validés et non validés
+                              -- Paramètre  1 uniquement pour les projets en "Accepter " ou "EnCours"
+                     */
+                    cmd.Parameters.AddWithValue("Flag", 1);
+                    cnx.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            yield return Converter(reader);
+                        }
+                    }
+                }
+            }
         }
 
         public bool UpdateProject(int id)
@@ -93,9 +156,26 @@ namespace DAL.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Permet de valider par l'admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true ou false (reuissite ou echec )</returns>
         public bool ValidProject(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand  cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "validProject"; //Passer l'id du project
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdProjectParams", id);
+                    cnx.Open();
+
+                    return cmd.ExecuteNonQuery() > 0;
+
+                }
+            }
         }
     }
 }

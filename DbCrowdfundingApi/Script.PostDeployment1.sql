@@ -22,11 +22,11 @@ INSERT INTO Users VALUES ('Pol','Pol@gmail.com','1234$','2000-01-01','abdhheyifj
 INSERT INTO Users VALUES ('Will','Will@gmail.com','1234$','2000-01-01','abdhheyifjfhgfhjd',1,3);
 
 
-INSERT INTO Projects VALUES('Mon Projet 1','Desc Projet 1','Objectif Projet 1','BE 123654','2022-10-01','2022-10-05',1,1);
-INSERT INTO Projects VALUES('Mon Projet 2','Desc Projet 2','Objectif Projet 2','BE 123654','2022-10-01','2022-10-05',2,2);
-INSERT INTO Projects VALUES('Mon Projet 3','Desc Projet 3','Objectif Projet 3','BE 123654','2022-10-01','2022-10-05',3,3);
-INSERT INTO Projects VALUES('Mon Projet 4','Desc Projet 4','Objectif Projet 4','BE 123654','2022-10-01','2022-10-05',1,4);
-INSERT INTO Projects VALUES('Mon Projet 5','Desc Projet 5','Objectif Projet 5','BE 123654','2022-10-01','2022-10-05',2,5);
+INSERT INTO Projects VALUES('Mon Projet 1','Desc Projet 1',12.21,'BE 123654','2020-10-01','2022-10-05',1,1);
+INSERT INTO Projects VALUES('Mon Projet 2','Desc Projet 2',45251.32,'BE 123654','2020-10-01','2022-10-05',2,2);
+INSERT INTO Projects VALUES('Mon Projet 3','Desc Projet 3',458.21,'BE 123654','2020-10-01','2022-10-05',3,3);
+INSERT INTO Projects VALUES('Mon Projet 4','Desc Projet 4',12.02,'BE 123654','2020-10-01','2022-10-05',1,4);
+INSERT INTO Projects VALUES('Mon Projet 5','Desc Projet 5',482.12,'BE 123654','2020-10-01','2022-10-05',2,5);
 
 
 INSERT INTO Contributions VALUES(1235.23,'2022-10-01',3,1);
