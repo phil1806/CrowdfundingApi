@@ -9,7 +9,7 @@ BEGIN
 		FROM Projects As P
 		join StatusProjects 
 		ON P.IdStatus  = StatusProjects.Id
-		WHERE StatusProjects.TypeStatus = 'Accept' or StatusProjects.TypeStatus = 'Encours';
+		WHERE StatusProjects.TypeStatus = 'Accept' OR StatusProjects.TypeStatus = 'Encours';
 	ELSE 
 	 -- Si non tous les projets confondus
 		SELECT P.Id,P.Titre,P.[Description],P.Objectif,P.DateDebut,P.DateFin,P.CompteBQ,StatusProjects.TypeStatus

@@ -17,7 +17,6 @@ VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
 INSERT INTO StatusProjects (TypeStatus) 
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 
-
 INSERT INTO Users VALUES ('Phil','Phil@gmail.com','1234$','2000-01-01','abdhheyifjfhgfhjd',1,1);
 INSERT INTO Users VALUES ('Pol','Pol@gmail.com','1234$','2000-01-01','abdhheyifjfhgfhjd',1,2);
 INSERT INTO Users VALUES ('Will','Will@gmail.com','1234$','2000-01-01','abdhheyifjfhgfhjd',1,3);
@@ -37,6 +36,6 @@ INSERT INTO Contributions VALUES(58.23,'2022-10-01',3,4);
 
 
 
-
-
+ 
+ 
 
