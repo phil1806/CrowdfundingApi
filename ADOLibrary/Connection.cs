@@ -100,5 +100,17 @@ namespace ADOLibrary
                 }
             }
         }
+
+        public T ExecuteReaderOnce<T>(Command Command, Func<SqlDataReader, T> converter) {
+            using (SqlConnection c = CreateConnection()) {
+                using (SqlCommand SqlCmd = CreateCommand(Command, c)) {
+                    c.Open();
+                    using (SqlDataReader dr = SqlCmd.ExecuteReader()) {
+                        dr.Read();
+                        return converter(dr);
+                    }
+                }
+            }
+        }
     }
 }

@@ -14,13 +14,52 @@ namespace CrowdfundingApi.Controllers {
             _UserService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Register(UserForm user) {
             try {
                 return Ok(_UserService.Create(user));
             } catch (Exception ex) { 
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("Login")]
+        public IActionResult Login(UserLogin user) {
+            try {
+                return Ok(_UserService.Login(user));
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPut]
+        public IActionResult Update(User user) {
+            try {
+                _UserService.Update(user);
+                return Ok();
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Remove(int id) {
+            _UserService.Delete(id);
+            return Ok();
+        }
+
+        [HttpGet( "{id}" ) ]
+        public IActionResult GetUserById(int id) {
+            try {
+                return Ok(_UserService.GetUserById(id)) ;
+            }catch(Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll() {
+            return Ok(_UserService.GetAllUsers());
         }
 
 

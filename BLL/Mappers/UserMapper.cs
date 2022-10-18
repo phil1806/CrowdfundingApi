@@ -26,11 +26,35 @@ namespace BLL.Mappers {
             };
         }
 
+        public static DALm.UserLogin ToDal(this BLLm.UserLogin user) {
+            return new DALm.UserLogin() {
+                Email = user.Email,
+                Password = user.Password
+            };
+        }
+
         public static BLLm.User ToBll(this DALm.User user) {
             return new BLLm.User() {
                 Nickname = user.Nickname,
-                Id = user.Id
+                Id = user.Id,
+                Email = user.Email,
+                BirtDay= user.BirtDay
             };
+        }
+
+        public static DALm.User ToBll(this BLLm.User user) {
+            return new DALm.User() {
+                Nickname = user.Nickname,
+                Id = user.Id,
+                Email = user.Email,
+                BirtDay = user.BirtDay
+            };
+        }
+
+        public static IEnumerable<BLLm.User> ToBll(this IEnumerable<DALm.User> users) {
+            foreach(DALm.User u in users) {
+                yield return u.ToBll();
+            }
         }
 
     }

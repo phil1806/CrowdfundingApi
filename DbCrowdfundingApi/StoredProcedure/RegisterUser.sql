@@ -12,10 +12,10 @@ BEGIN
 	DECLARE @hash VARBINARY(64)
     SET @hash = HASHBYTES('SHA2_512', CONCAT(@salt, @pdw, @salt));
 
-    DECLARE @outputTable TABLE ( Id INT , nickname VARCHAR(50) )
+    DECLARE @outputTable TABLE ( Id INT , nickname VARCHAR(50), Email VARCHAR(50),Birthdate DATE )
 
     INSERT INTO Users (Email, NickName, Pwd, Birthdate, IdRole, Salt) 
-    OUTPUT INSERTED.Id,INSERTED.NickName
+    OUTPUT INSERTED.Id,INSERTED.NickName,INSERTED.Email,inserted.Birthdate
     INTO @outputTable
     VALUES (@email, @nickname, @hash,@birthdate,@role, @salt)
     SELECT * FROM @outputTable
