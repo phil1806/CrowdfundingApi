@@ -21,5 +21,3 @@ BEGIN
     SELECT * FROM @outputTable
 END
 
-
-
