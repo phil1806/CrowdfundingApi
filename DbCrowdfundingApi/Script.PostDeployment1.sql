@@ -25,10 +25,12 @@ VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
 INSERT INTO StatusProjects (TypeStatus) 
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 
+DECLARE @date Date;
+SELECT @date = DATEFROMPARTS ( 2010, 12, 31 )
 
-EXEC [RegisterUser] @nickname = 'Phil',	@email= 'Phil@gmail.com',	@pdw = '1234$', @birthdate= '2000-01-01',@role  = 1;
-EXEC [RegisterUser] @nickname = 'Pol',	@email= 'Pol@gmail.com',	@pdw = '1234$', @birthdate= '2000-01-01',@role  = 1;
-EXEC [RegisterUser] @nickname = 'Will',	@email= 'Will@gmail.com',	@pdw = '1234$', @birthdate= '2000-01-01',@role  = 1;
+EXEC [RegisterUser] @nickname = 'Phil',	@email= 'Phil@gmail.com',	@pdw = '1234$', @birthdate = @date ,@role  = 1;
+EXEC [RegisterUser] @nickname = 'Pol',	@email= 'Pol@gmail.com',	@pdw = '1234$', @birthdate = @date ,@role  = 1;
+EXEC [RegisterUser] @nickname = 'Will',	@email= 'Will@gmail.com',	@pdw = '1234$', @birthdate = @date ,@role  = 1;
 
 
 INSERT INTO Projects VALUES('Mon Projet 1','Desc Projet 1','Objectif Projet 1','BE 123654','2020-10-01','2022-10-05',1,1);

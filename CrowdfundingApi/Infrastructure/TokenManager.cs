@@ -26,7 +26,7 @@ namespace CrowdfundingApi.Infrastructure {
             //Création du payload / Claims
             Claim[] myclaims = new Claim[]
             {
-               new Claim(ClaimTypes.Role, user.Role.ToString()),
+               new Claim(ClaimTypes.Role, user.Role),
                new Claim("UserId", user.Id.ToString())
             };
 

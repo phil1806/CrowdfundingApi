@@ -27,7 +27,7 @@ namespace DAL.Repositories {
                 Nickname = dr["Nickname"]?.ToString() ?? "",
                 Email = dr["Email"]?.ToString() ?? "",
                 BirtDay = dr["Birthdate"] == null ? new DateTime() : DateTime.Parse(dr["Birthdate"].ToString()),// (DateTime) dr["Birthdate"]
-                Role = (int) dr["IdRole"]
+                Role = dr["RoleName"]?.ToString() ?? ""
             };
         }
 
@@ -140,7 +140,7 @@ namespace DAL.Repositories {
             try {
                 return AdoLibCon.ExecuteReaderOnce(cmd, Converter);
             } catch (Exception ex) {
-                throw new Exception("invalid login - password");
+                throw new Exception("invalid login - password "+ex.Message);
             }
 
             /*
