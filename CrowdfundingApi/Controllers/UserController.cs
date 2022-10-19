@@ -21,12 +21,13 @@ namespace CrowdfundingApi.Controllers {
 
         [HttpPost("Register")]
         public IActionResult Register(UserForm user) {
-            try {
+            try {//TODO same code in login and register => to methode API.User login( BLL.User )
                 User u = _UserService.Create(user);
                 UserAPI cu = new UserAPI {
                     Id = u.Id,
                     Nickname = u.Nickname,
-                    Token = _tokenManager.GenerateToken(u)
+                    Token = _tokenManager.GenerateToken(u),
+                    Email = u.Email
                 };
                 return Ok(cu);
             } catch (Exception ex) { 
@@ -41,7 +42,8 @@ namespace CrowdfundingApi.Controllers {
                 UserAPI cu = new UserAPI {
                     Id = u.Id,
                     Nickname = u.Nickname,
-                    Token = _tokenManager.GenerateToken(u)
+                    Token = _tokenManager.GenerateToken(u),
+                    Email = u.Email
                 };
                 return Ok(cu);
             } catch (Exception ex) {

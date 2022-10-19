@@ -20,8 +20,6 @@ namespace DAL.Repositories {
         }
 
         private User Converter(SqlDataReader dr) {
-
-            if (dr["Id"] == null) throw new Exception("No User found");
             return new User() {
                 Id = (int) dr["Id"],
                 Nickname = dr["Nickname"]?.ToString() ?? "",
@@ -98,7 +96,7 @@ namespace DAL.Repositories {
 
             // Use ADO LIB to request SQL
             
-            Command cmd = new Command("SELECT * FROM [Users]");
+            Command cmd = new Command("SELECT * FROM [UsersActif]");
             return AdoLibCon.ExecuteReader(cmd, Converter);
             
         }
@@ -122,7 +120,7 @@ namespace DAL.Repositories {
 
             // Use ADO LIB to request SQL
             
-            Command cmd = new Command("SELECT * FROM [Users] WHERE Id = @p0");
+            Command cmd = new Command("SELECT * FROM UsersActif WHERE Id = @p0");
             cmd.AddParameter("@p0", id);
             try {
                 return AdoLibCon.ExecuteReaderOnce(cmd, Converter);
