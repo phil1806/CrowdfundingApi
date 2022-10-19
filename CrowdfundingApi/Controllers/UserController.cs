@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Models;
 using CrowdfundingApi.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserAPI = CrowdfundingApi.Models.UserAPI;
 
@@ -58,6 +59,7 @@ namespace CrowdfundingApi.Controllers {
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete]
         public IActionResult Remove(int id) {
             _UserService.Delete(id);

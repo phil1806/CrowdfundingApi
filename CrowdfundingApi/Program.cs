@@ -4,7 +4,9 @@ using BLL.Services;
 using CrowdfundingApi.Infrastructure;
 using DAL.Interfaces;
 using DAL.Repositories;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,24 @@ builder.Services.AddScoped<TokenManager>();
 builder.Services.AddScoped<IContributionService, ContributionService>();
 builder.Services.AddScoped<IContributionRepo, ContributionRepo>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => {
+        options.TokenValidationParameters = new TokenValidationParameters() {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                builder.Configuration.GetSection("TokenInfo").GetSection("secret").Value))
+        };
+    });
+
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ProjectOwner", policy => policy.RequireRole("ProjectOwner"));
+    options.AddPolicy("Contributeur", policy => policy.RequireRole("Contributeur"));
+    options.AddPolicy("Auth", policy => policy.RequireAuthenticatedUser());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
