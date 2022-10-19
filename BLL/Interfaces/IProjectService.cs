@@ -16,7 +16,7 @@ namespace BLL.Interfaces
 
         bool ValidProject(int id);
 
-        bool UpdateProject(int id);
+        bool UpdateProject(int id, Project leProject);
         bool DeleteProject(int id);
     }
 }

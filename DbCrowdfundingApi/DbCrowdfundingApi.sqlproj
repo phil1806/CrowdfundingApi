@@ -79,6 +79,7 @@
     <Build Include="StoredProcedure\GetProjectsByFlag.sql" />
     <Build Include="StoredProcedure\ValidProject.sql" />
     <Build Include="StoredProcedure\GetProjectById.sql" />
+    <Build Include="Triggers\ProjectSoftDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DbCrowdfundingApi_1.publish.xml" />

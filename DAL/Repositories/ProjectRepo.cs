@@ -37,11 +37,12 @@ namespace DAL.Repositories
                 DateDebut = DateTime.Parse(reader["DateDebut"].ToString()),
                 DateFin = DateTime.Parse(reader["DateFin"].ToString()),
                 TypeStatus = (string)reader["TypeStatus"],
-            
+                ContributionTotal = (decimal?)reader["ContributionTotal"] ?? 0,
+
             };
         }
 
-        private Project Converter1(IDataReader reader)
+        private Project ConverterGetProjectById(IDataReader reader)
         {
             return new Project
             {
@@ -63,7 +64,21 @@ namespace DAL.Repositories
 
         public bool DeleteProject(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = $@"DELETE 
+                                        FROM Projects
+                                        WHERE Id =@Id";
+                    cmd.Parameters.AddWithValue("Id", id);
+
+                    cnx.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+
+                }
+
+            }
         }
 
         public IEnumerable<Project> GetAllProjects()
@@ -108,7 +123,7 @@ namespace DAL.Repositories
                     {
                         if (reader.Read())
                         {
-                            return Converter1(reader);
+                            return ConverterGetProjectById(reader);
                         }
                         throw new Exception("Project inexistant...");
                     }
@@ -151,9 +166,37 @@ namespace DAL.Repositories
             }
         }
 
-        public bool UpdateProject(int id)
-        {
-            throw new NotImplementedException();
+        public bool UpdateProject(int id , Project leProject) 
+        { 
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = $@"UPDATE Projects SET
+                                        Titre = @Titre,
+                                        Description =@Description,
+                                        Objectif =@Objectif,
+                                        CompteBQ =@CompteBQ,
+                                        DateDebut = @DateDebut,
+                                        DateFin = @DateFin
+                                        WHERE Id = @Id";
+
+                    cmd.Parameters.AddWithValue("Titre", leProject.Titre);
+                    cmd.Parameters.AddWithValue("Description", leProject.Description);
+                    cmd.Parameters.AddWithValue("Objectif", leProject.Objectif);
+                    cmd.Parameters.AddWithValue("CompteBQ", leProject.CompteBQ);
+                    cmd.Parameters.AddWithValue("DateDebut", leProject.DateDebut);
+                    cmd.Parameters.AddWithValue("DateFin", leProject.DateFin);
+                    cmd.Parameters.AddWithValue("Id", id);
+
+                    cnx.Open();
+
+                    return cmd.ExecuteNonQuery() > 0;
+            
+                }
+            }
+
+           
         }
 
         /// <summary>

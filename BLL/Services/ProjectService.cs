@@ -26,7 +26,7 @@ namespace BLL.Services
 
         public bool DeleteProject(int id)
         {
-            throw new NotImplementedException();
+            return _projectRepo.DeleteProject(id);
         }
 
         public IEnumerable<Project> GetAllProjects()
@@ -45,9 +45,9 @@ namespace BLL.Services
             return _projectRepo.GetValidProjects().Select(x => x.toBLL());
         }
 
-        public bool UpdateProject(int id)
+        public bool UpdateProject(int id, Project leProject)
         {
-            throw new NotImplementedException();
+            return _projectRepo.UpdateProject(id, leProject.toDAL());
         }
 
         public bool ValidProject(int id)
