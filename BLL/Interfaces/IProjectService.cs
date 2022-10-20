@@ -1,22 +1,22 @@
-﻿using DAL.Models;
+﻿using BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces
+namespace BLL.Interfaces
 {
-    public interface IProject
+    public interface IProjectService
     {
-        IEnumerable <Project>GetAllProjects();
-        IEnumerable <Project>GetValidProjects();
+        IEnumerable<Project> GetAllProjects();
+        IEnumerable<Project> GetValidProjects();
         Project GetProjectById(int id);
         bool CreateProject();
 
         bool ValidProject(int id);
 
-        bool UpdateProject(int id);
+        bool UpdateProject(int id, Project leProject);
         bool DeleteProject(int id);
     }
 }
