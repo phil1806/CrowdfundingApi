@@ -12,7 +12,7 @@ namespace DAL.Interfaces
         IEnumerable <Project>GetAllProjects();
         IEnumerable <Project>GetValidProjects();
         Project GetProjectById(int id);
-        bool CreateProject();
+        int CreateProject(CreateProjectModel p);
 
         bool ValidProject(int id);
 

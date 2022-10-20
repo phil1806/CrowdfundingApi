@@ -49,6 +49,40 @@ namespace BLL.Mappers
 
         }
 
+        public static DALM.CreateProjectModel  toDALCreateProject(this BLLM.CreateProjectModel project)
+        {
+            return new DALM.CreateProjectModel
+            {
+                Id = project.Id,
+                Titre = project.Titre,
+                Description = project.Description,
+                Objectif = project.Objectif,
+                CompteBQ = project.CompteBQ,
+                DateDebut = project.DateDebut,
+                DateFin = project.DateFin,
+                IdUserOwner = project.IdUserOwner,
+                IdStatus = project.IdStatus,
+                Paliers= project.Paliers.Select(x=>x.toDALCreateProject()), 
+
+            };
+
+        }
+
+
+        //Mapper  des paliers
+        public static DALM.Paliers toDALCreateProject(this BLLM.Paliers paliers)
+        {
+            return new DALM.Paliers
+            {
+                Id = paliers.Id,
+                Title = paliers.Title,
+                Montant = paliers.Montant,
+                Description = paliers.Description,
+                IdProject = paliers.IdProject
+               
+            };
+
+        }
 
 
 

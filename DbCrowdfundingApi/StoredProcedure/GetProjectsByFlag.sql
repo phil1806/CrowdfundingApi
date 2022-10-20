@@ -15,7 +15,7 @@ BEGIN
 			group by p.id, P.Titre, P.[Description], P.Objectif, P.DateDebut, P.DateFin, P.CompteBQ,TypeStatus;
 	ELSE 
 	 -- Si non tous les projets confondus
-			SELECT P.Id, P.Titre, P.[Description], P.Objectif, P.DateDebut, P.DateFin, P.CompteBQ,TypeStatus,sum(ISNULL(MONTANT,0)) as ContributionTotal
+			SELECT P.Id, P.Titre, P.[Description], P.Objectif, P.DateDebut, P.DateFin, P.CompteBQ,TypeStatus,SUM(ISNULL(MONTANT,0)) as ContributionTotal
 			FROM Contributions AS ctr
 			FULL JOIN  Projects As P
 			ON ctr.IdProject = P.Id

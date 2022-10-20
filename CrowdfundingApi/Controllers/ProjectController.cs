@@ -79,13 +79,14 @@ namespace CrowdfundingApi.Controllers
         public IActionResult CreateProject(CreateProjectModel pj)
         {
 
+          // _projetService.CreateProject(pj);
             Console.WriteLine(pj.Titre);
 
             foreach (var item in pj.Paliers)
             {
                 Console.WriteLine(item.Montant);
             }
-            return Ok(pj);
+            return Ok(_projetService.CreateProject(pj));
         }
     }
 }

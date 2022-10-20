@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Models
+namespace DAL.Models
 {
-
- 
+  
     public class CreateProjectModel
     {
         public int Id { get; set; }

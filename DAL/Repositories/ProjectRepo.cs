@@ -57,9 +57,51 @@ namespace DAL.Repositories
                 TypeStatus ="non existant"
             };
         }
-        public bool CreateProject()
+        public int CreateProject(CreateProjectModel p)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                int idProject = 0;
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = @$"INSERT INTO Projects(Titre,Description , Objectif, CompteBQ,DateDebut,DateFin,IdUserOwner,IdStatus) 
+                                         OUTPUT INSERTED.id VALUES (@Titre, @Description,@Objectif,@CompteBQ,@DateDebut,@DateFin,@IdUserOwner,@IdStatus )";
+                    cmd.Parameters.AddWithValue("Titre", p.Titre);
+                    cmd.Parameters.AddWithValue("Description", p.Description) ;
+                    cmd.Parameters.AddWithValue("Objectif", p.Objectif) ;
+                    cmd.Parameters.AddWithValue("CompteBQ", p.CompteBQ);
+                    cmd.Parameters.AddWithValue("DateDebut", p.DateDebut);
+                    cmd.Parameters.AddWithValue("DateFin", p.DateFin);
+                    cmd.Parameters.AddWithValue("IdUserOwner", p.IdUserOwner);
+                    cmd.Parameters.AddWithValue("IdStatus",p.IdStatus);
+
+                    cnx.Open();
+                    idProject =  (int)cmd.ExecuteScalar();
+                  
+                }
+
+                
+                    foreach (Paliers palier in p.Paliers)
+                    {
+
+                        using (SqlCommand cmd = cnx.CreateCommand())
+                    {
+                        cmd.CommandText = @$"INSERT INTO Paliers(Title,Montant, Description, idProject) 
+                                            VALUES (@Title, @Montant,@Description_,@idProject)";
+                        cmd.Parameters.AddWithValue("Title", palier.Title);
+                        cmd.Parameters.AddWithValue("Montant", palier.Montant);
+                        cmd.Parameters.AddWithValue("Description_", palier.Description);
+                        cmd.Parameters.AddWithValue("idProject", idProject);
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+                }
+                    return 0;
+                
+
+            }
         }
 
         public bool DeleteProject(int id)

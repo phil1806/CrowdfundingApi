@@ -19,9 +19,9 @@ namespace BLL.Services
         {
             _projectRepo = projectRepo;
         }
-        public bool CreateProject()
+        public int CreateProject(CreateProjectModel P)
         {
-            throw new NotImplementedException();
+            return _projectRepo.CreateProject(P.toDALCreateProject());
         }
 
         public bool DeleteProject(int id)
