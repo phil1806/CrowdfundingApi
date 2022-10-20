@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetProjectsByFlag]
+﻿ CREATE PROCEDURE [dbo].[GetProjectsByFlag]
     -- on passe un flag qui est 1 par default pour definir les choix 
 	@Flag TINYINT = 1 
 AS
