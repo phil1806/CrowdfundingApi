@@ -167,7 +167,7 @@ namespace DAL.Repositories
                         {
                             return ConverterGetProjectById(reader);
                         }
-                        throw new Exception("Project inexistant...");
+                         throw new Exception("Project inexistant...");
                     }
                 }
             }

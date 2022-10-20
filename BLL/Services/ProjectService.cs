@@ -19,6 +19,8 @@ namespace BLL.Services
         {
             _projectRepo = projectRepo;
         }
+
+
         public int CreateProject(CreateProjectModel P)
         {
             return _projectRepo.CreateProject(P.toDALCreateProject());
@@ -30,8 +32,7 @@ namespace BLL.Services
         }
 
         public IEnumerable<Project> GetAllProjects()
-        {
-           
+        { 
            return _projectRepo.GetAllProjects().Select(x=>x.toBLL());
         }
 

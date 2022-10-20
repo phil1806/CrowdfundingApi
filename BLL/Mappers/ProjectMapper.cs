@@ -62,29 +62,11 @@ namespace BLL.Mappers
                 DateFin = project.DateFin,
                 IdUserOwner = project.IdUserOwner,
                 IdStatus = project.IdStatus,
-                Paliers= project.Paliers.Select(x=>x.toDALCreateProject()), 
+                Paliers= project.Paliers.Select(x=>x.toDalPallier()), 
 
             };
 
         }
-
-
-        //Mapper  des paliers
-        public static DALM.Paliers toDALCreateProject(this BLLM.Paliers paliers)
-        {
-            return new DALM.Paliers
-            {
-                Id = paliers.Id,
-                Title = paliers.Title,
-                Montant = paliers.Montant,
-                Description = paliers.Description,
-                IdProject = paliers.IdProject
-               
-            };
-
-        }
-
-
 
     }
 }

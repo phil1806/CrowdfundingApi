@@ -22,6 +22,10 @@ builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IProjectRepo, ProjectRepo>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 
+builder.Services.AddScoped< IPalierRepo , PalierRepo>();
+builder.Services.AddScoped< IPalierService , PalierService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
