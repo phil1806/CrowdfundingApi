@@ -19,6 +19,7 @@ INSERT INTO StatusProjects (TypeStatus)
 VALUES ('Submit'), ('Accept'), ('Refused'), ('Encours'), ('Finished');
 */
 
+
 INSERT INTO Roles (TypeRole) 
 VALUES ('Admin'), ('ProjectOwner'), ('Contributeur');
 
@@ -46,6 +47,50 @@ INSERT INTO Contributions VALUES(715.23,'2022-10-01',3,3);
 INSERT INTO Contributions VALUES(58.23,'2022-10-01',3,4);
 
 
+/*
+//TODO active SQLServerAgent 
+//TODO @command of the job
+
+USE msdb;
+EXEC dbo.sp_add_job  
+    @job_name = N'MyJob',
+	@owner_login_name = 'sa'
+GO  
+
+GO  
+EXEC sp_add_jobstep  
+    @job_name = N'MyJob',  
+    @step_name = N'Set database to read only',  
+    @subsystem = N'TSQL',  
+    @command = 'UPDATE Projects SET IdStatus = 3 WHERE DateFin < NOW',
+	@database_name = 'TestCrownfounding'
+	 
+GO 
+
+EXEC sp_add_jobserver 
+	@job_name = N'MyJob'
+
+
+USE msdb;
+EXEC sp_start_job   
+     @job_name = N'MyJob'
+
+GO  
+-- creates a schedule named NightlyJobs.   
+-- Jobs that use this schedule execute every day when the time on the server is 01:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'ExecMyJob' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 000000 ;  
+GO  
+
+-- attaches the schedule to the job BackupDatabase  
+EXEC sp_attach_schedule  
+   @job_name = N'MyJob',  
+   @schedule_name = N'ExecMyJob' ;  
+GO  
+*/
 
 
 
