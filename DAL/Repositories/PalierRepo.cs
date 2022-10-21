@@ -118,6 +118,9 @@ namespace DAL.Repositories
             }
         }
 
+
+
+
         public bool UpdatePalier(int id, Paliers P)
         {
             using (SqlConnection cnx = new SqlConnection(_connectionString))
