@@ -22,6 +22,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectRepo, ProjectRepo>();
+
+builder.Services.AddScoped<IPalierService, PalierService>();
+builder.Services.AddScoped<IPalierRepo, PalierRepo>();
+
+
+
+
 builder.Services.AddScoped<TokenManager>();
 
 builder.Services.AddScoped<IContributionService, ContributionService>();
