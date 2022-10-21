@@ -17,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//INJECTION DES DEPENDANCES
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 
