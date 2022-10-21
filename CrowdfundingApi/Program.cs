@@ -25,6 +25,9 @@ builder.Services.AddScoped<TokenManager>();
 builder.Services.AddScoped<IContributionService, ContributionService>();
 builder.Services.AddScoped<IContributionRepo, ContributionRepo>();
 
+builder.Services.AddScoped<IStatusProjetService, StatusProjetService>();
+builder.Services.AddScoped<IStatusProjetRepo, StatusProjetRepo>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
         options.TokenValidationParameters = new TokenValidationParameters() {
