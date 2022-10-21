@@ -1,12 +1,9 @@
 
 using BLL.Interfaces;
 using BLL.Services;
-using CrowdfundingApi.Infrastructure;
 using DAL.Interfaces;
 using DAL.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,36 +14,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//INJECTION DES DEPENDANCES
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
-
-builder.Services.AddScoped<TokenManager>();
 
 builder.Services.AddScoped<IContributionService, ContributionService>();
 builder.Services.AddScoped<IContributionRepo, ContributionRepo>();
 
-builder.Services.AddScoped<IStatusProjetService, StatusProjetService>();
-builder.Services.AddScoped<IStatusProjetRepo, StatusProjetRepo>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectRepo, ProjectRepo>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options => {
-        options.TokenValidationParameters = new TokenValidationParameters() {
-            ValidateAudience = false,
-            ValidateIssuer = false,
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                builder.Configuration.GetSection("TokenInfo").GetSection("secret").Value))
-        };
-    });
-
-builder.Services.AddAuthorization(options => {
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("ProjectOwner", policy => policy.RequireRole("ProjectOwner"));
-    options.AddPolicy("Contributeur", policy => policy.RequireRole("Contributeur"));
-    options.AddPolicy("Auth", policy => policy.RequireAuthenticatedUser());
-});
+builder.Services.AddScoped<IPalierService, PalierService>();
+builder.Services.AddScoped<IPalierRepo, PalierRepo>();
 
 var app = builder.Build();
 
@@ -57,7 +35,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
