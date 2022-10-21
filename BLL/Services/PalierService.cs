@@ -22,9 +22,9 @@ namespace BLL.Services
         }
 
 
-        public bool CreatePalier(Paliers Paliers)
+        public int CreatePalier(Paliers Palier)
         {
-            throw new NotImplementedException();
+            return _palierRepo.CreatePalier(Palier.toDalPallier());
         }
 
         public bool DeletePalier(int id)
@@ -42,9 +42,9 @@ namespace BLL.Services
             return _palierRepo.GetPalierById(id).toBllPallier();
         }
 
-        public bool UpdatePalier(int id)
+        public bool UpdatePalier(int id, Paliers P)
         {
-            throw new NotImplementedException();
+            return _palierRepo.UpdatePalier(id, P.toDalPallier());
         }
     }
 }

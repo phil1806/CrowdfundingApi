@@ -38,9 +38,25 @@ namespace DAL.Repositories
         }
 
 
-        public bool CreatePalier(Paliers Paliers)
+        public int CreatePalier(Paliers palier)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = cnx.CreateCommand())
+                {
+                    cmd.CommandText = "InsertPalier";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Title", palier.Title);
+                    cmd.Parameters.AddWithValue("Montant", palier.Montant);
+                    cmd.Parameters.AddWithValue("Description", palier.Description);
+                    cmd.Parameters.AddWithValue("idProject", palier.IdProject);
+                    cnx.Open();
+
+                    return (int)cmd.ExecuteScalar();
+                }
+
+            }
+          
         }
 
         public bool DeletePalier(int id)
@@ -102,9 +118,34 @@ namespace DAL.Repositories
             }
         }
 
-        public bool UpdatePalier(int id)
+        public bool UpdatePalier(int id, Paliers P)
         {
-            throw new NotImplementedException();
+            using (SqlConnection cnx = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd =  cnx.CreateCommand())
+                {
+                    cmd.CommandText = @$"UPDATE Paliers SET 
+                                        Title = @Title,
+                                        Montant = @Montant,
+                                        Description = @Description,
+                                        IdProject = @IdProject
+                                        WHERE Id =@Id;";
+
+                    cmd.Parameters.AddWithValue("Id",id);
+                    cmd.Parameters.AddWithValue("Title", P.Title);
+                    cmd.Parameters.AddWithValue("Montant", P.Montant);
+                    cmd.Parameters.AddWithValue("Description", P.Description);
+                    cmd.Parameters.AddWithValue("IdProject", P.IdProject);
+
+                    cnx.Open();
+
+                   return cmd.ExecuteNonQuery() > 0;
+
+                }
+
+            }
+
+           
         }
     }
 }

@@ -12,8 +12,8 @@ namespace DAL.Interfaces
         IEnumerable<Paliers> GetAllPaliers();
         Paliers GetPalierById(int id);
 
-        bool CreatePalier(Paliers Paliers);
-        bool UpdatePalier(int id);
+        int CreatePalier(Paliers Paliers);
+        bool UpdatePalier(int id, Paliers Paliers);
         bool DeletePalier(int id);
     }
 }

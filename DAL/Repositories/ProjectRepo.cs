@@ -80,25 +80,27 @@ namespace DAL.Repositories
                   
                 }
 
-                
+                int lastIdPalierWasInsert = 0;
                     foreach (Paliers palier in p.Paliers)
                     {
 
                         using (SqlCommand cmd = cnx.CreateCommand())
                     {
-                        cmd.CommandText = @$"INSERT INTO Paliers(Title,Montant, Description, idProject) 
-                                            VALUES (@Title, @Montant,@Description_,@idProject)";
+
+                        cmd.CommandText = "InsertPalier";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+           
                         cmd.Parameters.AddWithValue("Title", palier.Title);
                         cmd.Parameters.AddWithValue("Montant", palier.Montant);
-                        cmd.Parameters.AddWithValue("Description_", palier.Description);
+                        cmd.Parameters.AddWithValue("Description", palier.Description);
                         cmd.Parameters.AddWithValue("idProject", idProject);
 
-                        cmd.ExecuteNonQuery();
+                        lastIdPalierWasInsert = (int)cmd.ExecuteScalar();
 
                     }
 
                 }
-                    return 0;
+                    return 1;
                 
 
             }

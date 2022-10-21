@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using BLL.Models;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,19 @@ namespace CrowdfundingApi.Controllers
         public IActionResult DeletePalier(int id)
         {
             return Ok(_palierService.DeletePalier(id));
+        }
+
+        [HttpPut]
+
+        public IActionResult UpdatePalier(int id, Paliers P)
+        {
+            return Ok(_palierService.UpdatePalier(id, P));
+        }
+
+        [HttpPost]
+        public IActionResult CreatePalier(Paliers P)
+        {
+            return Ok(_palierService.CreatePalier(P));
         }
     }
 }
