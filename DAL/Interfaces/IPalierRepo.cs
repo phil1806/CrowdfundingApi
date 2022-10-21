@@ -17,3 +17,6 @@ namespace DAL.Interfaces
         bool DeletePalier(int id);
     }
 }
+
+
+
