@@ -77,7 +77,6 @@
     <Build Include="StoredProcedure\RegisterUser.sql" />
     <Build Include="StoredProcedure\GetUsersContributionById.sql" />
     <Build Include="Views\UsersActif.sql" />
-    <Build Include="StoredProcedure\InsertPaliers.sql" />
     <Build Include="StoredProcedure\GetProjectsByFlag.sql" />
     <Build Include="Triggers\ProjectSoftDelete.sql" />
     <Build Include="StoredProcedure\InsertPalier.sql" />

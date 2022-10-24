@@ -10,10 +10,10 @@ namespace BLL.Interfaces
     public interface IPalierService
     {
         IEnumerable<Paliers> GetAllPaliers();
-        Paliers GetPalierById(int id);
+        IEnumerable<Paliers> GetPalierByProjetId(int id);
 
         int CreatePalier(Paliers Palier);
-        bool UpdatePalier(int id, Paliers Palier);
+        bool UpdatePalier( Paliers Palier);
         bool DeletePalier(int id);
     }
 }

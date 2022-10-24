@@ -17,6 +17,7 @@ namespace DAL.Models
         public DateTime DateFin { get; set; }
         public string TypeStatus { get; set; } 
         public decimal ContributionTotal { get; set; } 
+        public IEnumerable<Paliers> Paliers { get; set;}
     }
 
 

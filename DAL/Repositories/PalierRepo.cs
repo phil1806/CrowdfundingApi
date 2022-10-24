@@ -96,22 +96,19 @@ namespace DAL.Repositories
             }
         }
 
-        public Paliers GetPalierById(int id)
+        public IEnumerable<Paliers> GetPalierByProjetId(int id)
         {
             using (SqlConnection cnx = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandText = @$"SELECT * FROM Paliers WHERE Id = @id";
+                    cmd.CommandText = @$"SELECT * FROM Paliers WHERE IdProject = @id";
                     cmd.Parameters.AddWithValue("id", id);
                     cnx.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return Convert(reader);
+                    using (SqlDataReader reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            yield return Convert(reader);
                         }
-                        throw new Exception("Palier inexistant...");
                     }
 
                 }
@@ -121,7 +118,7 @@ namespace DAL.Repositories
 
 
 
-        public bool UpdatePalier(int id, Paliers P)
+        public bool UpdatePalier(Paliers P)
         {
             using (SqlConnection cnx = new SqlConnection(_connectionString))
             {
@@ -134,7 +131,7 @@ namespace DAL.Repositories
                                         IdProject = @IdProject
                                         WHERE Id =@Id;";
 
-                    cmd.Parameters.AddWithValue("Id",id);
+                    cmd.Parameters.AddWithValue("Id",P.Id);
                     cmd.Parameters.AddWithValue("Title", P.Title);
                     cmd.Parameters.AddWithValue("Montant", P.Montant);
                     cmd.Parameters.AddWithValue("Description", P.Description);

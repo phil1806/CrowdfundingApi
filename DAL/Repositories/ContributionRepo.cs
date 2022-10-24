@@ -21,9 +21,8 @@ namespace DAL.Repositories
             {
                 Id = (int)reader["Id"],
                 Montant = (decimal)reader["Montant"],
-                IdUser = (int)reader["IdUser"],
+                IdUser = (int)reader["IdUserContributeur"],
                 IdProject = (int)reader["IdProject"]
-
             };
         }
         public void Add(ContributionModelDAL contribution)

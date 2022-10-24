@@ -24,12 +24,12 @@ namespace CrowdfundingApi.Controllers
             return Ok(_palierService.GetAllPaliers());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetPalierById(int id)
+        [HttpGet("projetId/{id}")]
+        public IActionResult GetPalierByProjetId(int id)
         {
             try
             {
-                return Ok(_palierService.GetPalierById(id));
+                return Ok(_palierService.GetPalierByProjetId(id));
 
             }
             catch (Exception ex)
@@ -47,9 +47,9 @@ namespace CrowdfundingApi.Controllers
 
         [HttpPut]
 
-        public IActionResult UpdatePalier(int id, Paliers P)
+        public IActionResult UpdatePalier(Paliers P)
         {
-            return Ok(_palierService.UpdatePalier(id, P));
+            return Ok(_palierService.UpdatePalier( P));
         }
 
         [HttpPost]

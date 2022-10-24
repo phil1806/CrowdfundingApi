@@ -8,7 +8,7 @@
 	DateDebut DATETIME NOT NULL,
 	DateFin  DATETIME NOT NULL,
 	[IdUserOwner] INT NOT NULL REFERENCES [Users](Id),
-	[IdStatus] INT NOT NULL REFERENCES [StatusProjects](Id)
+	[IdStatus] INT NOT NULL REFERENCES [StatusProjects](Id) DEFAULT 1
 
 
 )
