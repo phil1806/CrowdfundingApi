@@ -84,7 +84,7 @@
     <Build Include="StoredProcedure\GetProjectById.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DbCrowdfundingApi_1.publish.xml" />
     <None Include="DocDb\DbFinal.png" />
+    <None Include="DbCrowdfundingApi_1.publish.xml" />
   </ItemGroup>
 </Project>

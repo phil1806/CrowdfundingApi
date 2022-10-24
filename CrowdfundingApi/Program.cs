@@ -1,6 +1,7 @@
 
 using BLL.Interfaces;
 using BLL.Services;
+using CrowdfundingApi.Infrastructure;
 using DAL.Interfaces;
 using DAL.Repositories;
 
@@ -17,20 +18,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 
-<<<<<<< HEAD
-=======
-builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IProjectRepo, ProjectRepo>();
-
-builder.Services.AddScoped<IPalierService, PalierService>();
-builder.Services.AddScoped<IPalierRepo, PalierRepo>();
-
-
-
-
-builder.Services.AddScoped<TokenManager>();
-
->>>>>>> b6d766275d871afa35ef267d07c802e5e1e842c2
 builder.Services.AddScoped<IContributionService, ContributionService>();
 builder.Services.AddScoped<IContributionRepo, ContributionRepo>();
 
