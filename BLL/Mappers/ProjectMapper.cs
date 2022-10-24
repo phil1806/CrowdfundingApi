@@ -42,7 +42,7 @@ namespace BLL.Mappers
                 DateFin = project.DateFin,
                 TypeStatus =  project.TypeStatus,
                 ContributionTotal = project.ContributionTotal,
-                Paliers = project.Paliers.Select(x => x.toDalPallier())
+                Paliers = project.Paliers?.Select(x => x.toDalPallier())
 
 
             };
