@@ -15,12 +15,14 @@ namespace DAL.Repositories
     {
         //Prop
         private readonly string _connectionString;
+        private readonly IPalierRepo palierService;
 
 
         //Consktructeur
-        public ProjectRepo(IConfiguration Iconfig)
+        public ProjectRepo(IConfiguration Iconfig, IPalierRepo _palierService)
         {
             _connectionString = Iconfig.GetConnectionString("default");
+            palierService = _palierService;
         }
 
 
@@ -64,8 +66,8 @@ namespace DAL.Repositories
                 int idProject = 0;
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
-                    cmd.CommandText = @$"INSERT INTO Projects(Titre,Description , Objectif, CompteBQ,DateDebut,DateFin,IdUserOwner,IdStatus) 
-                                         OUTPUT INSERTED.id VALUES (@Titre, @Description,@Objectif,@CompteBQ,@DateDebut,@DateFin,@IdUserOwner,@IdStatus )";
+                    cmd.CommandText = @$"INSERT INTO Projects(Titre,Description , Objectif, CompteBQ,DateDebut,DateFin,IdUserOwner) 
+                                         OUTPUT INSERTED.id VALUES (@Titre, @Description,@Objectif,@CompteBQ,@DateDebut,@DateFin,@IdUserOwner )";
                     cmd.Parameters.AddWithValue("Titre", p.Titre);
                     cmd.Parameters.AddWithValue("Description", p.Description) ;
                     cmd.Parameters.AddWithValue("Objectif", p.Objectif) ;
@@ -73,7 +75,7 @@ namespace DAL.Repositories
                     cmd.Parameters.AddWithValue("DateDebut", p.DateDebut);
                     cmd.Parameters.AddWithValue("DateFin", p.DateFin);
                     cmd.Parameters.AddWithValue("IdUserOwner", p.IdUserOwner);
-                    cmd.Parameters.AddWithValue("IdStatus",p.IdStatus);
+                    //cmd.Parameters.AddWithValue("IdStatus",p.IdStatus);
 
                     cnx.Open();
                     idProject =  (int)cmd.ExecuteScalar();
@@ -167,12 +169,17 @@ namespace DAL.Repositories
                     {
                         if (reader.Read())
                         {
-                            return ConverterGetProjectById(reader);
+                            Project projet = ConverterGetProjectById(reader);
+                            projet.Paliers = palierService.GetPalierByProjetId(projet.Id);
+                            return projet;
+                            //projet.Pal
                         }
-                         throw new Exception("Project inexistant...");
+                        throw new Exception("Project inexistant...");
                     }
                 }
             }
+
+
 
         }
 
@@ -235,8 +242,8 @@ namespace DAL.Repositories
 
                     cnx.Open();
 
-                    return cmd.ExecuteNonQuery() > 0;
-            
+                    cmd.ExecuteNonQuery() ;
+                    return true;
                 }
             }
 

@@ -17,7 +17,7 @@ namespace BLL.Models
         public DateTime DateFin { get; set; }
         public string TypeStatus { get; set; } = "non existant";
         public decimal ContributionTotal { get; set; }
-
+        public IEnumerable<Paliers> Paliers { get; set; }
 
     }
 }

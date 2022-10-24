@@ -37,14 +37,14 @@ namespace BLL.Services
             return _palierRepo.GetAllPaliers().Select(x =>x.toBllPallier()); 
         }
 
-        public Paliers GetPalierById(int id)
+        public IEnumerable<Paliers> GetPalierByProjetId(int id)
         {
-            return _palierRepo.GetPalierById(id).toBllPallier();
+            return _palierRepo.GetPalierByProjetId(id).Select(p => p.toBllPallier());
         }
 
-        public bool UpdatePalier(int id, Paliers P)
+        public bool UpdatePalier(Paliers P)
         {
-            return _palierRepo.UpdatePalier(id, P.toDalPallier());
+            return _palierRepo.UpdatePalier(P.toDalPallier());
         }
     }
 }

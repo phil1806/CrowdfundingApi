@@ -10,10 +10,10 @@ namespace DAL.Interfaces
     public interface IPalierRepo
     {
         IEnumerable<Paliers> GetAllPaliers();
-        Paliers GetPalierById(int id);
+        IEnumerable<Paliers> GetPalierByProjetId(int id);
 
         int CreatePalier(Paliers Paliers);
-        bool UpdatePalier(int id, Paliers Paliers);
+        bool UpdatePalier(Paliers Paliers);
         bool DeletePalier(int id);
     }
 }
