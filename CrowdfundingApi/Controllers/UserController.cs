@@ -79,6 +79,7 @@ namespace CrowdfundingApi.Controllers {
 
         [HttpGet]
         public IActionResult GetAll() {
+
             return Ok(_UserService.GetAllUsers());
         }
 

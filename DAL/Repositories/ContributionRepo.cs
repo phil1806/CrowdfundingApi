@@ -32,13 +32,14 @@ namespace DAL.Repositories
                 using (SqlCommand cmd = cnx.CreateCommand())
                 {
                     //cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "INSERT INTO Contributions (Montant, IdUser, IdProject) VALUES (@Montant, @IdUser, @IdProject)";
+                    cmd.CommandText = "AddContribution";
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Montant", contribution.Montant);
                     cmd.Parameters.AddWithValue("@IdUser", contribution.IdUser);
                     cmd.Parameters.AddWithValue("@IdProject", contribution.IdProject);
                     cnx.Open();
                     cmd.ExecuteNonQuery();
-                   
+                    //if ((int)cmd.ExecuteScalar() == -1) throw new Exception("user not Contributer or project not 'en cours'");   
                 }
             }
         }

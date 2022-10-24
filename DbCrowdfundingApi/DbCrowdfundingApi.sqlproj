@@ -82,6 +82,7 @@
     <Build Include="StoredProcedure\InsertPalier.sql" />
     <Build Include="StoredProcedure\ValidProject.sql" />
     <Build Include="StoredProcedure\GetProjectById.sql" />
+    <Build Include="StoredProcedure\AddContribution.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DbCrowdfundingApi_1.publish.xml" />

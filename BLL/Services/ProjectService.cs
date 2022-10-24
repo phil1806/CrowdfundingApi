@@ -23,6 +23,7 @@ namespace BLL.Services
 
         public int CreateProject(CreateProjectModel P)
         {
+            if (P.Objectif <= 0) throw new Exception("Objectif too low");
             return _projectRepo.CreateProject(P.toDALCreateProject());
         }
 
