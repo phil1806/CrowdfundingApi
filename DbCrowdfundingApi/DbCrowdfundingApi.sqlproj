@@ -77,8 +77,15 @@
     <Build Include="StoredProcedure\RegisterUser.sql" />
     <Build Include="StoredProcedure\GetUsersContributionById.sql" />
     <Build Include="Views\UsersActif.sql" />
+    <Build Include="StoredProcedure\InsertPaliers.sql" />
+    <Build Include="StoredProcedure\GetProjectsByFlag.sql" />
+    <Build Include="Triggers\ProjectSoftDelete.sql" />
+    <Build Include="StoredProcedure\InsertPalier.sql" />
+    <Build Include="StoredProcedure\ValidProject.sql" />
+    <Build Include="StoredProcedure\GetProjectById.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DbCrowdfundingApi.publish.xml" />
+    <None Include="DbCrowdfundingApi_1.publish.xml" />
+    <None Include="DocDb\DbFinal.png" />
   </ItemGroup>
 </Project>
