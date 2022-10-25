@@ -12,7 +12,7 @@ using System.Text;
 namespace CrowdfundingApi {
 
 
-    public partial class CrowdfundingApi {
+    public class CrowdfundingApi {
 
         public static void Main(string[] args) {
 
