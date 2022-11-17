@@ -16,7 +16,18 @@ namespace CrowdfundingApi {
 
         public static void Main(string[] args) {
 
+
+            string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy => {
+                                      policy.WithOrigins("http://localhost:4200").AllowAnyHeader();
+                                  });
+            });
 
             // Add services to the container.
 
@@ -72,6 +83,8 @@ namespace CrowdfundingApi {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors(MyAllowSpecificOrigins);
+
 
             app.UseAuthentication();
             app.UseAuthorization();
