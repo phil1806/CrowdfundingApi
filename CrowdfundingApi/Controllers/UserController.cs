@@ -27,7 +27,9 @@ namespace CrowdfundingApi.Controllers {
                     Id = u.Id,
                     Nickname = u.Nickname,
                     Token = _tokenManager.GenerateToken(u),
-                    Email = u.Email
+                    Email = u.Email,
+                    Role = u.Role,
+
                 };
                 return Ok(cu);
             } catch (Exception ex) { 
@@ -43,7 +45,8 @@ namespace CrowdfundingApi.Controllers {
                     Id = u.Id,
                     Nickname = u.Nickname,
                     Token = _tokenManager.GenerateToken(u),
-                    Email = u.Email
+                    Email = u.Email,
+                    Role = u.Role
                 };
                 return Ok(cu);
             } catch (Exception ex) {

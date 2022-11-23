@@ -84,6 +84,7 @@ namespace CrowdfundingApi {
                 app.UseSwaggerUI();
             }
             app.UseCors(MyAllowSpecificOrigins);
+            app.UseStaticFiles();
 
 
             app.UseAuthentication();

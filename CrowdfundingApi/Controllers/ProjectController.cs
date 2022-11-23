@@ -60,8 +60,6 @@ namespace CrowdfundingApi.Controllers
             }
         }
 
-
-
         [HttpPut]
         public IActionResult UpdateProject(int id, Project leProject)
         {
