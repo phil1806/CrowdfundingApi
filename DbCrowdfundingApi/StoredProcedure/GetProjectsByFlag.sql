@@ -7,7 +7,7 @@ BEGIN
 	IF (@Flag = 1)	
 			SELECT P.Id, P.Titre, P.[Description], P.Objectif, P.DateDebut, P.DateFin, P.CompteBQ,TypeStatus,sum(ISNULL(MONTANT,0)) as ContributionTotal
 			FROM Contributions AS ctr
-			JOIN  Projects As P
+			FULL JOIN  Projects As P
 			ON ctr.IdProject = P.Id
 			JOIN StatusProjects 
 			ON P.IdStatus  = StatusProjects.Id
@@ -19,7 +19,7 @@ BEGIN
 			FROM Contributions AS ctr
 			FULL JOIN  Projects As P
 			ON ctr.IdProject = P.Id
-			FULL JOIN StatusProjects 
+			JOIN StatusProjects 
 			ON P.IdStatus  = StatusProjects.Id
 			WHERE StatusProjects.TypeStatus != 'Deleted' 
 			group by p.id, P.Titre, P.[Description], P.Objectif, P.DateDebut, P.DateFin, P.CompteBQ,TypeStatus;
