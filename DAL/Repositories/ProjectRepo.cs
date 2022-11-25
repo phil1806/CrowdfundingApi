@@ -40,7 +40,6 @@ namespace DAL.Repositories
                 DateFin = DateTime.Parse(reader["DateFin"].ToString()),
                 TypeStatus = (string)reader["TypeStatus"],
                 ContributionTotal = (decimal?)reader["ContributionTotal"] ?? 0,
-
             };
         }
 
